@@ -1,5 +1,6 @@
 # midi2wav
 Open-source project based on midi conversion to a wav file (using BasicSynth, © 2008, Daniel R. Mitchell).
+SoundFont used : GeneralUser GS 1.471 Version 2.1.0.0 1997-2015 by S. Christian Collins
 
 How to execute
 --------------
