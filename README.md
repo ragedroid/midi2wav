@@ -4,7 +4,7 @@ Open-source project based on midi conversion to a wav file (using BasicSynth, ©
 How to execute
 --------------
 
-Set "master/Midi2Wav/Bin" as the current directory on cmd or bash. From here type "./midi2wav ./midin.mid ./wavout.wav", where 'midin' is any of the MIDI example files in the Bin directory and 'wavout' is the custom name of WAV output. The "wavout.wav" file will be generated in the Bin directory itself and can be played easily using any multimedia software. 
+Set "master/Midi2Wav/Bin" as the current directory on cmd or bash. From here type "./midi2wav ../Midi/midin.mid ../Wav/wavout.wav", where 'midin' is any of the MIDI example files in the Bin directory and 'wavout' is the custom name of WAV output. The "wavout.wav" file will be generated in the Bin directory itself and can be played easily using any multimedia software. 
 
 Note that only single file-input and single file-output compatibility is taken care of as of June 20 2020, 16:19 pm. 
 
