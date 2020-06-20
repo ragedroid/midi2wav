@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////////////
 // MIDI file playback
 //
-// This program loads a GM soundbank (SF2 or DLS) and a MIDI file (.mid)
+// This program loads a GM soundbank (SF2) and a MIDI file (.mid)
 // and produces a wave file.
 //
 // use: midi2wav [-gn] [-vn] [-s] infile.mid outfile.wav
@@ -95,7 +95,7 @@ const char *midiCCName[128] =
 void useage()
 {
 	fprintf(stderr, "MIDI File Player\n");
-	fprintf(stderr, "use: midi2wav [-gn] [-vn] [-s] [-d] soundbank midifile wavefile\n");
+	fprintf(stderr, "use: midi2wav [-gn] [-vn] [-s] midifile wavefile\n");
 	fprintf(stderr, "    -vn = master volume level, default 1.0\n");
 	fprintf(stderr, "    -nn = maximum voices, default 32\n");
 //	fprintf(stderr, "    -gn = GM level n=1 or n=2 (default 1), n=0 use bank select as is\n");
@@ -109,19 +109,43 @@ long    genTime = 0;
 bsString midFile;
 bsString sbFile;
 bsString wavFile;
+const char* pmidname;
+/* char* pwavname;
+int length = 0; */
 
-void midiname(void) 
+void midname(void) 
 {
-	const char* p = midFile;
-    while (*p) {
-        p++;
+	pmidname = midFile;
+    while (*pmidname) {
+        pmidname++;
     }
-    while (*p != '/' && *p != '\\') {
-        p--;
+    while (*pmidname != '/' && *pmidname != '\\') {
+        pmidname--;
     }
-    p++;
-    printf("%s\n",p);
+    pmidname++;
+    printf("%s\n",pmidname);
 }
+
+/* void generatewav(void)
+{
+	char wav[length];
+	strcpy(wav,midFile);
+	pwavname = wav;
+    while (*pwavname) {
+        pwavname++;
+    }
+    while (*pwavname != '.') {
+        pwavname--;
+    }
+    pwavname++;
+	
+	*pwavname = 'w';
+	*(pwavname+1) = 'a';
+	*(pwavname+2) = 'v';
+
+	wavFile = wav;
+
+} */
 
 void GenCallback(bsInt32 count, Opaque arg)
 {
@@ -172,9 +196,10 @@ int main(int argc, char *argv[])
 	sbFile = "../Soundfont/GeneralUser_GS.sf2";
 	if (argn < argc)
 		midFile = argv[argn++];
+//	generatewav(); //wavFile generation
 	if (argn < argc)
 		wavFile = argv[argn];
-	if (sbFile.Length() == 0 || midFile.Length() == 0 || wavFile.Length() == 0)
+	if (sbFile.Length() == 0 || midFile.Length() == 0  || wavFile.Length() == 0 )
 		useage();
 
 	SoundBank *sb = 0;
@@ -252,7 +277,7 @@ int main(int argc, char *argv[])
 	// run the sequencer
 	wvf.OpenWaveFile(wavFile, 2);
 	inmgr.Init(&mix, &wvf);
-	midiname();
+	midname();
 	seq.SetCB(GenCallback, synthParams.isampleRate, 0);
 	genTime = 0;
 	time(&clkTime);
