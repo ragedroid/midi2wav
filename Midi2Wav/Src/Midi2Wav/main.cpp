@@ -123,7 +123,7 @@ void midname(void)
         pmidname--;
     }
     pmidname++;
-    printf("%s\n",pmidname);
+    printf("Converting %s\n",pmidname);
 }
 
 /* void generatewav(void)
@@ -277,7 +277,7 @@ int main(int argc, char *argv[])
 	// run the sequencer
 	wvf.OpenWaveFile(wavFile, 2);
 	inmgr.Init(&mix, &wvf);
-	midname();
+	if (verbose) midname();
 	seq.SetCB(GenCallback, synthParams.isampleRate, 0);
 	genTime = 0;
 	time(&clkTime);
@@ -285,15 +285,16 @@ int main(int argc, char *argv[])
 	seq.Sequence(inmgr, 0, 0);
 	wvf.CloseWaveFile();
 
-	if (verbose)
+/*	if (verbose)
 	{
 		long clkTimeDiff = (long) (time(0) - clkTime);
 		printf("\n%02ld:%02ld in %02ld:%02ld %ld%%\n",
 			genTime / 60, genTime % 60, clkTimeDiff / 60, clkTimeDiff % 60,
 			(clkTimeDiff * 100) / genTime);
-	}
+	} */
 
 	sb->Unlock();
+	printf("Successfully converted.\n");
 
 	return 0;
 }
