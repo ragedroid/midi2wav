@@ -16,4 +16,4 @@ Improvements required
 - Removal of unnecessary header and cpp files (to the best extent possible without damaging the purpose of the program).
 - In main.cpp : Create 'bsString wavFile' to have the same midi-file name as in 'bsString midFile'.
 - Implement a directory (midin) -> directory (wavout) format within the code so that midi-files don't have to be put from the command line.
-- Display the names of midi file on command line while parsing through a directory.
+- Display the names of midi file on command line while parsing through a directory. (update: DONE)
