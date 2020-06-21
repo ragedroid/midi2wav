@@ -136,11 +136,10 @@ void generatewav(void)
     while (*pmidname != '/' && *pmidname != '\\') {
         pmidname--;
     }
-    pmidname++;
 	bsString name;
 	name = pmidname;
-	wavFile.SetLen(wavFile.Length()-name.Length()-5);
-	const char* s1 = "Wav/";
+	wavFile.SetLen(wavFile.Length()-name.Length()-4);
+	const char* s1 = "Wav";
 	wavFile = wavFile.Append(s1);
 	name.SetLen(name.Length()-3);
 	const char* s2 = "wav";
