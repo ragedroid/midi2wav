@@ -6,7 +6,7 @@ SoundFont used : GeneralUser GS 1.471 Version 2.1.0.0 1997-2015 by S. Christian 
 How to execute
 --------------
 
-Set "master/Midi2Wav/Bin" as the current directory on cmd or bash. From here type "./midi2wav ../Midi/midin.mid ../Wav/wavout.wav", where 'midin' is any of the MIDI example files in the Bin directory and 'wavout' is the custom name of WAV output. The "wavout.wav" file will be generated in the Bin directory itself and can be played easily using any multimedia software. 
+Set "master/Midi2Wav/Bin" as the current directory on cmd or bash. From here type "./midi2wav ../Midi/midin.mid", where 'midin' is any of the MIDI example files in the Midi directory. The "wavout.wav" file will be generated in the Wav directory and can be played easily using any multimedia software. 
 
 Note that only single file-input and single file-output compatibility is taken care of as of June 20 2020, 16:19 pm. 
 
@@ -16,6 +16,6 @@ Improvements required
 ---------------------
 
 - Removal of unnecessary header and cpp files (to the best extent possible without damaging the purpose of the program).
-- In main.cpp : Create 'bsString wavFile' to have the same midi-file name as in 'bsString midFile'.
+- In main.cpp : Create 'bsString wavFile' to have the same midi-file name as in 'bsString midFile'. (update: DONE)
 - Implement a directory (midin) -> directory (wavout) format within the code so that midi-files don't have to be put from the command line.
 - Display the names of midi file on command line while parsing through a directory. (update: DONE for single file inputs)
