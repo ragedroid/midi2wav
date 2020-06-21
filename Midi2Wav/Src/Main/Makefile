@@ -1,5 +1,5 @@
 ###########################################################################
-# Makefile for BasicSynth example9a
+# Makefile for BasicSynth main
 #
 # "make new" rebuilds all executables
 # "make clean" removes the executable images from $(BSBIN)
