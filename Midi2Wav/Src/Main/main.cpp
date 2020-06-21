@@ -109,12 +109,11 @@ long    genTime = 0;
 bsString midFile;
 bsString sbFile;
 bsString wavFile;
-const char* pmidname;
-/* char* pwavname;
-int length = 0; */
+/* int length = 0; */
 
 void midname(void) 
 {
+	const char* pmidname;
 	pmidname = midFile;
     while (*pmidname) {
         pmidname++;
@@ -126,26 +125,28 @@ void midname(void)
     printf("Converting %s\n",pmidname);
 }
 
-/* void generatewav(void)
+void generatewav(void)
 {
-	char wav[length];
-	strcpy(wav,midFile);
-	pwavname = wav;
-    while (*pwavname) {
-        pwavname++;
+	wavFile = midFile;
+	const char* pmidname;
+	pmidname = midFile;
+    while (*pmidname) {
+        pmidname++;
     }
-    while (*pwavname != '.') {
-        pwavname--;
+    while (*pmidname != '/' && *pmidname != '\\') {
+        pmidname--;
     }
-    pwavname++;
-	
-	*pwavname = 'w';
-	*(pwavname+1) = 'a';
-	*(pwavname+2) = 'v';
-
-	wavFile = wav;
-
-} */
+    pmidname++;
+	bsString name;
+	name = pmidname;
+	wavFile.SetLen(wavFile.Length()-name.Length()-5);
+	const char* s1 = "Wav/";
+	wavFile = wavFile.Append(s1);
+	name.SetLen(name.Length()-3);
+	const char* s2 = "wav";
+	name = name.Append(s2);
+	wavFile = wavFile.Append(name);
+}
 
 void GenCallback(bsInt32 count, Opaque arg)
 {
@@ -196,9 +197,9 @@ int main(int argc, char *argv[])
 	sbFile = "../Soundfont/GeneralUser_GS.sf2";
 	if (argn < argc)
 		midFile = argv[argn++];
-//	generatewav(); //wavFile generation
-	if (argn < argc)
-		wavFile = argv[argn];
+	generatewav(); //wavFile generation
+//	if (argn < argc)
+//		wavFile = argv[argn];
 	if (sbFile.Length() == 0 || midFile.Length() == 0  || wavFile.Length() == 0 )
 		useage();
 
