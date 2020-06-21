@@ -3,7 +3,7 @@ BSDIR ?= $(shell dirname `pwd`)
 include BasicSynth.cfg
 
 LIBMODULES= Common Instruments Notelist
-BINMODULES= Midi2Wav
+BINMODULES= Main
 BSMODULES= $(LIBMODULES) $(BINMODULES)
 
 .PHONY: all chkdirs clean new tests $(BSMODULES)
