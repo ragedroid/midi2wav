@@ -7,6 +7,7 @@
 #        new - clean then make the library
 ###########################################################
 include ../BasicSynth.cfg
+TINYXML=tinyxml
 
 SRCS=\
 	Global.cpp \
@@ -26,6 +27,10 @@ SRCS=\
 	XmlWrapU.cpp \
 	XmlWrapN.cpp \
 	XmlWrapT.cpp \
+	$(TINYXML)/tinyxml.cpp \
+	$(TINYXML)/tinyxmlerror.cpp \
+	$(TINYXML)/tinyxmlparser.cpp \
+	$(TINYXML)/tinystr.cpp
 
 ifeq ($(SYS),Msys)
 SRCS += SynthFileW.cpp WaveOutDirect.cpp
@@ -48,6 +53,7 @@ $(CMNLIB): $(OBJS)
 
 chkdirs:
 	@test -d $(ODIR) || mkdir $(ODIR)
+	@test -d $(ODIR)/$(TINYXML) || mkdir $(ODIR)/$(TINYXML)
 	
 clean:
 	-@rm $(OBJS)
